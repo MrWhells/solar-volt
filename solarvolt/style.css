@@ -1,0 +1,366 @@
+/* Importando fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+:root {
+    --azul-eletrico: #0047FF;
+    --laranja-solar: #FF8A00;
+    --preto-profundo: #121212;
+    --cinza-escuro: #1E1E1E;
+    --branco: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--preto-profundo);
+    color: var(--branco);
+    line-height: 1.6;
+}
+
+/* Header & Navegação */
+header {
+    padding: 15px 5%;
+    background-color: var(--preto-profundo);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333; /* Uma linha sutil para separar do hero */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--laranja-solar);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--azul-eletrico);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Isso empurra a logo para um lado e o menu para o outro */
+    align-items: center;           /* Isso alinha os textos verticalmente no centro */
+    width: 100%;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--branco);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--azul-eletrico);
+}
+
+.btn-nav {
+    background-color: var(--azul-eletrico);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Hero Section */
+#hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('assets/imagem-hero.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+button {
+    background-color: var(--laranja-solar);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #e67e00;
+}
+/*SEÇÃO VANTAGENS*/
+#vantagens-apresentacao {
+    padding: 60px 5%;
+    background-color: var(--preto-profundo);
+    overflow: hidden;
+}
+
+.slide-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    min-height: 400px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.slide-texto {
+    flex: 1;
+}
+
+.slide-texto h2 {
+    color: var(--laranja-solar);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.slide-texto p {
+    font-size: 1.2rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.slide-imagem {
+    flex: 1;
+    text-align: right;
+}
+
+.slide-imagem img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 71, 255, 0.2);
+    border: 2px solid var(--azul-eletrico);
+}
+
+/* Animação de transição */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+/* Responsividade */
+@media (max-width: 768px) {
+    .slide-item { flex-direction: column-reverse; text-align: center; }
+    .slide-imagem img { max-width: 100%; }
+}
+/*FIM SEÇÃO VANTAGENS*/
+
+/*SEÇÃO DEPOIMENTOS*/
+#depoimentos {
+    padding: 80px 5%;
+    background-color: var(--preto-profundo);
+}
+
+.grid-depoimentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-depoimento {
+    background: var(--cinza-escuro);
+    padding: 30px;
+    border-radius: 15px;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+
+.card-depoimento:hover {
+    border-bottom: 3px solid var(--azul-eletrico);
+    transform: translateY(-5px);
+}
+
+.estrelas {
+    color: var(--laranja-solar);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.texto-depoimento {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.autor-depoimento {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.autor-info h4 {
+    color: var(--branco);
+    margin: 0;
+}
+
+.autor-info span {
+    color: var(--azul-eletrico);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+.autor-depoimento {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.foto-cliente {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Torna a imagem circular */
+    object-fit: cover;
+    border: 2px solid var(--azul-eletrico);
+}
+
+.autor-info h4 {
+    margin: 0;
+    color: var(--branco);
+    font-size: 1rem;
+}
+
+.autor-info span {
+    color: var(--laranja-solar);
+    font-size: 0.8rem;
+}
+/*FIM DA SEÇÃO DEPOIMENTOS*/
+
+/*SEÇÃO BOTÃO WHATSAPP*/
+/* Botão WhatsApp Flutuante */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+}
+
+.whatsapp-float img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Animação de pulso para atrair o clique */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 125, 3, 0.979); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+/*FIM DA SEÇÃO WHATSAPP*/
+
+/*SEÇÃO RODAPÉ*/
+footer {
+    background-color: #0a0a0a; /* Um tom levemente mais escuro que o preto do site */
+    padding: 60px 5% 20px;
+    border-top: 1px solid var(--azul-eletrico);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-col h3 {
+    color: var(--laranja-solar);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.footer-col p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #888;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--azul-eletrico);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #222;
+}
+
+.footer-bottom p {
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Ajuste da logo no rodapé para usar o span azul */
+.footer-col .logo span {
+    color: var(--azul-eletrico);
+}
+/*FIM DA SEÇÃO RODAPÉ*/
