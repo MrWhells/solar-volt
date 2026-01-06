@@ -1,5 +1,5 @@
-//SEÇÃO CARROSSEL VANTAGENS
-// Banco de dados da apresentação
+// --- 1. BANCO DE DADOS (DATA) ---
+
 const slides = [
     {
         titulo: "Economia Imediata",
@@ -18,35 +18,6 @@ const slides = [
     }
 ];
 
-let slideAtual = 0;
-const container = document.getElementById('slider-solar');
-
-function mostrarSlide() {
-    const data = slides[slideAtual];
-    
-    // Injeta o conteúdo dinamicamente
-    container.innerHTML = `
-        <div class="slide-item">
-            <div class="slide-texto">
-                <h2>${data.titulo}</h2>
-                <p>${data.descricao}</p>
-            </div>
-            <div class="slide-imagem">
-                <img src="${data.imagem}" alt="${data.titulo}">
-            </div>
-        </div>
-    `;
-
-    // Próximo slide
-    slideAtual = (slideAtual + 1) % slides.length;
-}
-
-// Inicia a apresentação
-mostrarSlide();
-setInterval(mostrarSlide, 7000);
-//FIM DA SEÇÃO CARROSSEL VANTAGENS
-
-//SEÇÃO DEPOIMENTOS
 const depoimentos = [
     {
         nome: "Ricardo Silva",
@@ -71,10 +42,37 @@ const depoimentos = [
     }
 ];
 
+// --- 2. VARIÁVEIS DE CONTROLE DE ESTADO ---
+
+let slideAtual = 0;
+const containerSlider = document.getElementById('slider-solar');
+
+// --- 3. FUNÇÕES DE CONTEÚDO (MÉTODOS) ---
+
+function mostrarSlide() {
+    if (!containerSlider) return; // Segurança caso o elemento não exista
+
+    const data = slides[slideAtual];
+    
+    containerSlider.innerHTML = `
+        <div class="slide-item">
+            <div class="slide-texto">
+                <h2>${data.titulo}</h2>
+                <p>${data.descricao}</p>
+            </div>
+            <div class="slide-imagem">
+                <img src="${data.imagem}" alt="${data.titulo}">
+            </div>
+        </div>
+    `;
+
+    slideAtual = (slideAtual + 1) % slides.length;
+}
+
 function carregarDepoimentos() {
     const grid = document.getElementById('grid-depoimentos');
-    
-    // Injeção dinâmica com template strings
+    if (!grid) return;
+
     grid.innerHTML = depoimentos.map(item => `
         <div class="card-depoimento">
             <div class="estrelas">${item.estrelas}</div>
@@ -90,5 +88,88 @@ function carregarDepoimentos() {
     `).join('');
 }
 
+// --- 4. FUNÇÕES DE INTERAÇÃO E SISTEMA ---
+
+// LÓGICA DO BOTÃO INICIAR
+function ligarSite() {
+    const btn = document.getElementById('power-btn');
+    const screen = document.getElementById('welcome-screen');
+    const text = document.getElementById('power-text');
+
+    // Animação visual do botão
+    btn.classList.add('active');
+    btn.style.transform = "scale(0.9)";
+    text.innerText = "BEM VINDO";
+    text.style.color = "var(--azul-eletrico)";
+
+    // Transição de entrada no site
+    setTimeout(() => {
+        screen.classList.add('fade-out');
+        console.log("SolarVolt Ligada!");
+        
+        // Inicia o carrossel apenas após o site "ligar"
+        mostrarSlide();
+        setInterval(mostrarSlide, 7000);
+    }, 1200);
+}
+// FIM DA LÓGICA DO BOTÃO INICIAR
+
+// FUNÇÃO DO SIMULADOR DE ECONOMIA
+
+function animarValor(id, valorFinal) {
+    const elemento = document.getElementById(id);
+    let valorAtual = 0;
+    const duracao = 1500; // 1.5 segundos
+    const incremento = valorFinal / (duracao / 16); // Aproximadamente 60fps
+
+    const timer = setInterval(() => {
+        valorAtual += incremento;
+        if (valorAtual >= valorFinal) {
+            elemento.innerText = valorFinal.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+            clearInterval(timer);
+        } else {
+            elemento.innerText = valorAtual.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+        }
+    }, 16);
+}
+
+function calcularEconomia() {
+    const valorConta = parseFloat(document.getElementById('conta-luz').value);
+    const resultadoDiv = document.getElementById('resultado');
+    
+    if (isNaN(valorConta) || valorConta <= 0) {
+        alert("Por favor, insira um valor válido para a conta de luz.");
+        return;
+    }
+
+    // Lógica de economia (95%)
+    const economiaMensal = valorConta * 0.95;
+    const economiaAnual = economiaMensal * 12;
+    const economia25Anos = economiaAnual * 25;
+
+    // Mostra o container de resultados
+    resultadoDiv.classList.remove('hidden');
+
+    // Dispara a animação dos números
+    animarValor('economia-anual', economiaAnual);
+    animarValor('economia-total', economia25Anos);
+}
+// FIM DA FUNÇÃO DO SIMULADOR DE ECONOMIA
+
+//FUNÇÃO HAMBURGUER
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    const hamburger = document.querySelector('.menu-hamburger');
+    
+    // Liga/Desliga a classe 'active' para deslizar o menu
+    navLinks.classList.toggle('active');
+    
+    // Opcional: Animação do ícone hambúrguer virando um 'X'
+    hamburger.classList.toggle('toggle-icon');
+}
+//FIM DA FUNÇÃO HAMBURGUER
+
+// --- 5. INICIALIZAÇÃO (BOOT) ---
+
+// Carregamos os depoimentos imediatamente (em background)
 carregarDepoimentos();
-//FIM DA SEÇÃO DEPOIMENTOS
