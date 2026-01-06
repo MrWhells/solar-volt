@@ -515,3 +515,92 @@ footer {
     font-size: 2.5rem;
 }
 /*FIM SEÇÃO ECONOMIA*/
+
+/* --- CONFIGURAÇÕES MOBILE (AJUSTE PRECISO) --- */
+
+@media (max-width: 768px) {
+    /* Garante que o Header não suma e os itens fiquem alinhados */
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 10000; /* Acima da welcome screen */
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    /* Menu Hambúrguer - Ajuste de visibilidade */
+    .menu-hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .bar {
+        width: 30px;
+        height: 3px;
+        background-color: var(--laranja-solar); /* Cor de destaque para aparecer bem */
+        transition: 0.4s;
+    }
+
+    /* Ajuste do Menu Lateral */
+    #nav-links {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        width: 80%;
+        height: 100vh;
+        background-color: #0a0a0a;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: 0.5s;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+    }
+
+    #nav-links.active {
+        right: 0;
+    }
+
+    /* ANIMAÇÃO DO X NO HAMBÚRGUER (Adicione esta classe via JS ao clicar) */
+    .menu-hamburger.active .bar:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    .menu-hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .menu-hamburger.active .bar:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    /* CORREÇÃO DOS BOXES (SIMULADOR E DEPOIMENTOS) */
+    .grid-depoimentos {
+        grid-template-columns: 1fr; /* Força uma única coluna no celular */
+        padding: 0 10px;
+    }
+
+    .simulador-box {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .simulador-box input {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    /* Ajuste do Hero */
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+}
+
+/* Esconde o hambúrguer em telas grandes */
+@media (min-width: 769px) {
+    .menu-hamburger {
+        display: none;
+    }
+}

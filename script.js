@@ -161,12 +161,10 @@ function toggleMenu() {
     const navLinks = document.getElementById('nav-links');
     const hamburger = document.querySelector('.menu-hamburger');
     
-    // Liga/Desliga a classe 'active' para deslizar o menu
     navLinks.classList.toggle('active');
-    
-    // Opcional: Animação do ícone hambúrguer virando um 'X'
-    hamburger.classList.toggle('toggle-icon');
+    hamburger.classList.toggle('active'); // Faz o X aparecer
 }
+
 //FIM DA FUNÇÃO HAMBURGUER
 
 // --- 5. INICIALIZAÇÃO (BOOT) ---

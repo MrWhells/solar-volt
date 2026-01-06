@@ -16,20 +16,30 @@
                 <line class="power-line" x1="50" y1="20" x2="50" y2="50" />
             </svg>
         </button>
-        <p id="power-text">CLIQUE PARA LIGAR</p>
+        <p id="power-text">APERTAR</p>
     </div>
 </div>
     <!--FIM BOTÃO POWER ENTRADA-->
-    <header>
-        <nav>
-            <div class="logo">SolarVolt</div>
-            <ul>
-                <li><a href="#hero">Início</a></li>
-                <li><a href="#vantagens-apresentacao">Vantagens</a></li>
-                <li><a href="#contato" class="btn-nav">Pedir Orçamento</a></li>
-            </ul>
-        </nav>
-    </header>
+
+   <header>
+    <nav>
+        <div class="logo">Solar<span>Volt</span></div>
+        
+        <div class="menu-hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <ul id="nav-links">
+            <li><a href="#inicio" onclick="toggleMenu()">Início</a></li>
+            <li><a href="#vantagens" onclick="toggleMenu()">Vantagens</a></li>
+            <li><a href="#simulador" onclick="toggleMenu()">Simulador</a></li>
+            <li><a href="#depoimentos" onclick="toggleMenu()">Clientes</a></li>
+            <li><a href="#contato" class="btn-nav" onclick="toggleMenu()">Orçamento</a></li>
+        </ul>
+    </nav>
+</header>
 
     <main>
         <section id="hero">
